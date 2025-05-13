@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "Usage: $0 -d <dataset_dir>"
+  exit 1
+}
+
+# 옵션 파싱
+while getopts ":d:" opt; do
+  case $opt in
+    d) DATA_DIR="$OPTARG" ;;
+    *) usage ;;
+  esac
+done
+
+# 필수 인자 체크
+[ -z "$DATA_DIR" ] && usage
+[ ! -d "$DATA_DIR" ] && echo "Error: '$DATA_DIR' is not a directory" >&2 && exit 1
+
+# split별, label별 이미지 파일 수 집계
+for split_dir in "$DATA_DIR"/*; do
+  [ -d "$split_dir" ] || continue
+  split_name=$(basename "$split_dir")
+  echo "=== Split: $split_name ==="
+  for label_dir in "$split_dir"/*; do
+    [ -d "$label_dir" ] || continue
+    label_name=$(basename "$label_dir")
+    # label 디렉토리 아래 모든 파일(.jpg, .png 등)을 세기
+    count=$(find -L "$label_dir" -type f | wc -l)
+    printf "  %-15s : %d\n" "$label_name" "$count"
+  done
+  echo
+done
