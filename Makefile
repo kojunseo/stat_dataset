@@ -1,4 +1,4 @@
 PREFIX ?= /usr/local
 install:
-	cp bin/count_dataset $(PREFIX)/bin/count_dataset
-	chmod +x $(PREFIX)/bin/count_dataset
+	cp bin/stat_dataset $(PREFIX)/bin/stat_dataset
+	chmod +x $(PREFIX)/bin/stat_dataset

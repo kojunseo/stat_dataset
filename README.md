@@ -1,4 +1,4 @@
-# count_dataset
+# stat_dataset
 
 ```bash
 dataset
@@ -14,27 +14,27 @@ dataset
 ### 방법 1) curl + bash 설치 (권장)
 
 ```bash
-sudo curl -sSL https://raw.githubusercontent.com/chato-prnd/count_dataset/main/bin/count_dataset -o /usr/local/bin/count_dataset
-sudo chmod +x /usr/local/bin/count_dataset
+sudo curl -sSL https://raw.githubusercontent.com/chato-prnd/stat_dataset/main/bin/stat_dataset -o /usr/local/bin/stat_dataset
+sudo chmod +x /usr/local/bin/stat_dataset
 ```
 
 ### 방법 2) GitHub 클론 + 수동 설치
 ```bash
-git clone https://github.com/chato-prnd/count_dataset.git
-cd count_dataset
+git clone https://github.com/chato-prnd/stat_dataset.git
+cd stat_dataset
 sudo make install
 ```
 
 또는 직접 복사해서 사용할 수도 있습니다.
 
 ```bash
-chmod +x bin/count_dataset
-cp bin/count_dataset ~/bin/
+chmod +x bin/stat_dataset
+cp bin/stat_dataset ~/bin/
 ```
 
 ## 🛠 사용법
 ```bash
-count_dataset -d /path/to/dataset
+stat_dataset -d /path/to/dataset
 ```
 * sudo는 /usr/local/bin에 설치할 권한 때문에 필요합니다. 다른 경로에 설치하고 싶다면 sudo 없이 사용하세요.
 * 직접 실행해보세요.
