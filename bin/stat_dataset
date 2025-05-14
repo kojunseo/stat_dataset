@@ -22,12 +22,16 @@ for split_dir in "$DATA_DIR"/*; do
   [ -d "$split_dir" ] || continue
   split_name=$(basename "$split_dir")
   echo "=== Split: $split_name ==="
+  total_count=0
   for label_dir in "$split_dir"/*; do
     [ -d "$label_dir" ] || continue
     label_name=$(basename "$label_dir")
     # label 디렉토리 아래 모든 이미지 파일을 세기
     count=$(find -L "$label_dir" -type f \( -iname "*.jpg" -o -iname "*.JPG" -o -iname "*.jpeg" -o -iname "*.JPEG" -o -iname "*.png" -o -iname "*.PNG" -o -iname "*.gif" -o -iname "*.GIF" -o -iname "*.heif" -o -iname "*.HEIF" -o -iname "*.heic" -o -iname "*.HEIC" \) -not -path "*/\.*" | wc -l)
+    total_count=$((total_count + count))
     printf "  %-15s : %d\n" "$label_name" "$count"
   done
+  echo "----------------------------------------"
+  echo "Total: $total_count"
   echo
 done
