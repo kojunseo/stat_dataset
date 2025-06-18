@@ -1,9 +1,23 @@
 #!/usr/bin/env bash
+VERSION="1.0.1"
 
 usage() {
   echo "Usage: $0 -d <dataset_dir>"
+  echo "       $0 --version"
   exit 1
 }
+
+show_version() {
+  echo "stat_dataset version $VERSION"
+  exit 0
+}
+
+# --version 옵션 체크
+for arg in "$@"; do
+  case $arg in
+    --version) show_version ;;
+  esac
+done
 
 # 옵션 파싱
 while getopts ":d:" opt; do
@@ -27,7 +41,7 @@ for split_dir in "$DATA_DIR"/*; do
     [ -d "$label_dir" ] || continue
     label_name=$(basename "$label_dir")
     # label 디렉토리 아래 모든 이미지 파일을 세기
-    count=$(find -L "$label_dir" -type f \( -iname "*.jpg" -o -iname "*.JPG" -o -iname "*.jpeg" -o -iname "*.JPEG" -o -iname "*.png" -o -iname "*.PNG" -o -iname "*.gif" -o -iname "*.GIF" -o -iname "*.heif" -o -iname "*.HEIF" -o -iname "*.heic" -o -iname "*.HEIC" \) -not -path "*/\.*" | wc -l)
+    count=$(find -L "$label_dir" -type f -not -path "*/\.*" | wc -l)
     total_count=$((total_count + count))
     printf "  %-15s : %d\n" "$label_name" "$count"
   done
