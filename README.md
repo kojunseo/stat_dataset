@@ -14,7 +14,7 @@ dataset
 ### 방법 1) curl + bash 설치 (권장)
 
 ```bash
-sudo curl -sSL https://raw.githubusercontent.com/chato-prnd/stat_dataset/main/bin/stat_dataset -o /usr/local/bin/stat_dataset
+sudo curl -sSL https://raw.githubusercontent.com/kojunseo/stat_dataset/main/bin/stat_dataset -o /usr/local/bin/stat_dataset
 sudo chmod +x /usr/local/bin/stat_dataset
 ```
 
